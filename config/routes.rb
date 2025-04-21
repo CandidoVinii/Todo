@@ -1,18 +1,7 @@
 Rails.application.routes.draw do
-  get "todos_itens/index"
-  get "todos_itens/show"
-  get "todos_itens/new"
-  get "todos_itens/create"
-  get "todos_itens/edit"
-  get "todos_itens/update"
-  get "todos_itens/destroy"
-  get "todo_lists/index"
-  get "todo_lists/show"
-  get "todo_lists/new"
-  get "todo_lists/create"
-  get "todo_lists/edit"
-  get "todo_lists/update"
-  get "todo_lists/destroy"
+  resources :todo_lists do
+    resources :todos
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -24,5 +13,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "todo_lists#index"
 end
