@@ -1,10 +1,10 @@
 class TodoListsController < ApplicationController
   def index
-    @all = TodoList.all
+    @todo_lists = TodoList.all
     if @all.empty?
       flash[:notice] = "No todo lists found."
     else
-      @all
+      @todo_lists
     end
   end
 
@@ -12,9 +12,16 @@ class TodoListsController < ApplicationController
   end
 
   def new
+    @todo_list = TodoList.new
   end
 
   def create
+    @todo_list = TodoList.new(todo_list_params)
+    if @todo_list.save
+      redirect_to @todo_list, notice: "Lista criada com sucesso"
+    else
+      render :new
+    end
   end
 
   def edit
