@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "todos_itens/index"
+  get "todos_itens/show"
+  get "todos_itens/new"
+  get "todos_itens/create"
+  get "todos_itens/edit"
+  get "todos_itens/update"
+  get "todos_itens/destroy"
   get "todo_lists/index"
   get "todo_lists/show"
   get "todo_lists/new"
