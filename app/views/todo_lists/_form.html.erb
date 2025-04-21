@@ -1,0 +1,21 @@
+<%= form_with(model: @todo_list, class: "space-y-4") do |form| %>
+  <% if @todo_list.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-4 rounded">
+      <h2><%= pluralize(@todo_list.errors.count, "erro") %> encontrados:</h2>
+      <ul>
+        <% @todo_list.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, "Título", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "mt-1 block w-full border border-gray-300 rounded p-2" %>
+  </div>
+
+  <div>
+    <%= form.submit class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+  </div>
+<% end %>
