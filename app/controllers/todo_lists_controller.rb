@@ -1,5 +1,11 @@
 class TodoListsController < ApplicationController
   def index
+    @all = TodoList.all
+    if @all.empty?
+      flash[:notice] = "No todo lists found."
+    else
+      @all
+    end
   end
 
   def show
