@@ -9,6 +9,7 @@ class TodoListsController < ApplicationController
   end
 
   def show
+    @todo_list = TodoList.find(params[:id])
   end
 
   def new
