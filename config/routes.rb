@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get "todo_lists/index"
+  get "todo_lists/show"
+  get "todo_lists/new"
+  get "todo_lists/create"
+  get "todo_lists/edit"
+  get "todo_lists/update"
+  get "todo_lists/destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
