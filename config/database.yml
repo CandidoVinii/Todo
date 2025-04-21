@@ -14,7 +14,12 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
+  database: <%= ENV.fetch("DB_NAME") %>
+  username: <%= ENV.fetch("DB_USERNAME") %>
+  password: <%= ENV.fetch("DB_PASSWORD") %>
+  host: <%= ENV.fetch("DB_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DB_PORT") { 5432 } %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -81,9 +86,9 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: todo_production
-    username: todo
-    password: <%= ENV["TODO_DATABASE_PASSWORD"] %>
+    database: <%= ENV.fetch("DB_NAME_PROD") { "todolist_production" } %>
+  username: <%= ENV.fetch("DB_USERNAME_PROD") { "todolist" } %>
+  password: <%= ENV.fetch("DB_PASSWORD_PROD") %>
   cache:
     <<: *primary_production
     database: todo_production_cache
