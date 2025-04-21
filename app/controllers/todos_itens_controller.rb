@@ -1,4 +1,7 @@
 class TodosItensController < ApplicationController
+  before_action :set_todo_list
+  before_action :set_todo, only: [ :edit, :update, :destroy ]
+
   def index
   end
 
