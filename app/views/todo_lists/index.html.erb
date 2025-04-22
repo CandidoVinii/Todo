@@ -2,10 +2,18 @@
 
 <ul class="space-y-4">
   <% @todo_lists.each do |list| %>
+    <% total = list.todo_items.count %>
+    <% done = list.todo_items.where(done: true).count %>
+    <% not_done = total - done %>
+
     <li class="bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-semibold">
-        <%= list.title %> 
-        <span class="text-sm text-gray-500">(<%= pluralize(list.todo_items.count, 'tarefa') %>)</span>
+      <h2 class="text-xl font-semibold flex justify-between items-center">
+        <span><%= list.title %></span>
+        <span class="text-sm text-gray-500">
+          (<%= pluralize(total, 'tarefa') %>,
+          ✅ <%= done %>,
+          ❌ <%= not_done %>)
+        </span>
       </h2>
       <div class="mt-2">
         <%= link_to "Ver", todo_list_path(list), class: "text-blue-600 hover:underline" %> |
