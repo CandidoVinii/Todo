@@ -2,17 +2,17 @@ class TodosItensController < ApplicationController
   before_action :set_todo_list
   before_action :set_todo, only: [ :edit, :update, :destroy ]
 
-  def index
+  def new
     @todo = @todo_list.todos_itens.build
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
+    @todo = @todo_list.todos.build(todo_params)
+    if @todo.save
+      redirect_to todo_list_path(@todo_list), notice: "Tarefa criada com sucesso!"
+    else
+      render :new
+    end
   end
 
   def edit
