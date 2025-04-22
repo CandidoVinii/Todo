@@ -1,6 +1,6 @@
-<%= form_with(model: [@todo_list, @todo_item]) do |form| %>
+<%= form_with(model: [@todo_list, @todo_item], class: "space-y-4") do |form| %>
   <% if @todo_item.errors.any? %>
-    <div>
+    <div class="bg-red-100 text-red-700 p-4 rounded"> 
       <h2><%= pluralize(@todo_item.errors.count, "erro") %> encontrados:</h2>
       <ul>
         <% @todo_item.errors.full_messages.each do |msg| %>
@@ -11,8 +11,8 @@
   <% end %>
 
   <div>
-    <%= form.label :content, "Tarefa" %>
-    <%= form.text_field :content %>
+    <%= form.label :content, "Tarefa", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :content, class: "mt-1 block w-full border border-gray-300 rounded p-2" %>
   </div>
 
   <div>
@@ -21,6 +21,6 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
   </div>
 <% end %>
