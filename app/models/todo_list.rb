@@ -1,3 +1,3 @@
 class TodoList < ApplicationRecord
-  has_many :todo_item, dependent: :destroy
+  has_many :todo_items, dependent: :destroy
 end
