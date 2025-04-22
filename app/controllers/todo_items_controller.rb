@@ -3,8 +3,13 @@ class TodoItemsController < ApplicationController
   before_action :set_todo, only: [ :edit, :update, :destroy ]
 
 
+  def render_not_found
+    render file: "#{Rails.root}/public/404.html", status: :not_found
+  end
+
   def show
-    @todo_item = @todo_list.todo_items.find(params[:id])
+    @todo_item = @todo_list.todo_items.find_by(id: params[:id])
+    render_not_found unless @todo_item
   end
 
   def new
@@ -16,23 +21,29 @@ class TodoItemsController < ApplicationController
     if @todo_item.save
       redirect_to todo_list_path(@todo_list), notice: "Tarefa criada com sucesso!"
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
-  def edit; end
+  def edit
+    @todo_item = TodoItem.find(params[:id])
+  end
 
   def update
     if @todo_item.update(todo_item_params)
       redirect_to todo_list_path(@todo_list), notice: "Tarefa atualizada!"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @todo_item.destroy
+    @todo_item = TodoItem.find(params[:id])
+    if @todo_item.destroy
     redirect_to todo_list_path(@todo_list), notice: "Tarefa removida!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
