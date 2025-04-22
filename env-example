@@ -1,0 +1,15 @@
+# Ambiente de desenvolvimento
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
+DB_HOST=localhost
+DB_PORT=5432
+RAILS_MAX_THREADS=5
+
+# Ambiente de testes
+DB_NAME_TEST=
+
+# Ambiente de produção
+DB_NAME_PROD=
+DB_USERNAME_PROD=
+DB_PASSWORD_PROD=
