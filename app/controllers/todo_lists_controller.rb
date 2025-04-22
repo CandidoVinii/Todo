@@ -39,6 +39,12 @@ class TodoListsController < ApplicationController
   end
 
   def destroy
+    @todo_list = TodoList.find(params[:id])
+    if @todo_list.destroy
+    redirect_to todo_lists_path, notice: "Lista removida com sucesso"
+    else
+      render :edit
+    end
   end
 
   def todo_list_params
