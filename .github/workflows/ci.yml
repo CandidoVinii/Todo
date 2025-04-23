@@ -108,8 +108,8 @@ jobs:
   
       - name: Set up database
         run: |
-          bin/rails db:create
-          bin/rails db:schema:load
+          ruby bin/rails db:create
+          ruby bin/rails db:schema:load
 
       - name: Run tests
         env:
