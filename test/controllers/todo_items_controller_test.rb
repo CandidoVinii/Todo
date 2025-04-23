@@ -35,14 +35,23 @@ class TodoItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "deve concluir uma tarefa" do
+    patch done_todo_list_todo_item_path(@todo_list, @todo_item)
+
+    assert_redirected_to todo_list_path(@todo_list)
+    @todo_item.reload
+    assert_equal true, @todo_item.done
+  end
+
   test "deve atualizar uma tarefa" do
     patch todo_list_todo_item_path(@todo_list, @todo_item), params: {
-      todo_item: { content: "Atualizado" }
+      todo_item: { content: "Atualizado", done: false }
     }
 
     assert_redirected_to todo_list_path(@todo_list)
     @todo_item.reload
     assert_equal "Atualizado", @todo_item.content
+    assert_equal false, @todo_item.done
   end
 
   test "deve apagar uma tarefa" do
@@ -51,5 +60,6 @@ class TodoItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to todo_list_path(@todo_list)
+    assert_not TodoItem.exists?(@todo_item.id)
   end
 end
