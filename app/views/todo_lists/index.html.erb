@@ -6,20 +6,22 @@
     <% done = list.todo_items.where(done: true).count %>
     <% not_done = total - done %>
 
-    <li class="bg-white p-4 rounded shadow">
-      <h2 class="text-xl font-semibold flex justify-between items-center">
-        <span><%= list.title %></span>
-        <span class="text-sm text-gray-500">
-          (<%= pluralize(total, 'Tasks') %>,
-          ✅ <%= done %>,
-          ❌ <%= not_done %>)
-        </span>
-      </h2>
-      <div class="mt-2">
-        <%= link_to "View", todo_list_path(list), class: "text-blue-600 hover:underline" %> |
-        <%= link_to "Edit", edit_todo_list_path(list), class: "text-yellow-600 hover:underline" %> |
-        <%= button_to "Delete", todo_list_path(list), method: :delete, data: { confirm: "Is sure?" }, class: "text-red-600" %>
-      </div>
-    </li>
+    <%= link_to todo_list_path(list), class: "block" do %>
+      <li class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold flex justify-between items-center">
+          <span><%= list.title %></span>
+          <span class="text-sm text-gray-500">
+            (<%= pluralize(total, 'Tasks') %>,
+            ✅ <%= done %>,
+            ❌ <%= not_done %>)
+          </span>
+        </h2>
+        <div class="mt-2 flex space-x-4">
+          <%= link_to "View", todo_list_path(list), class: "text-blue-600 hover:underline" %>|
+          <%= link_to "Edit", edit_todo_list_path(list), class: "text-yellow-600 hover:underline" %>|
+          <%= button_to "Delete", todo_list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:underline" %>
+        </div>
+      </li>
+    <% end %> 
   <% end %>
 </ul>
