@@ -19,3 +19,14 @@ test:
   timeout: 5000
   host: localhost
   port: 5432
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: todolist_development 
+  username: todolist
+  password: 12345
+  pool: 5
+  timeout: 5000
+  host: localhost
+  port: 5432
