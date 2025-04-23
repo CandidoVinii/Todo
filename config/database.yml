@@ -1,32 +1,27 @@
-development:
+default: &default
   adapter: postgresql
   encoding: utf8
-  database: todolist_development 
-  username: todolist
-  password: 12345
-  pool: 5
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
   timeout: 5000
-  host: localhost
-  port: 5432
+  port: <%= ENV.fetch("DB_PORT", 5432) %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_DEV", "todolist_development") %>
+  username: <%= ENV.fetch("DB_USER_DEV", "todolist") %>
+  password: <%= ENV.fetch("DB_PASSWORD_DEV", 12345) %>
+  host: <%= ENV.fetch("DB_HOST_DEV", "localhost") %>
 
 test:
-  adapter: postgresql
-  encoding: utf8
-  database: todolist_development 
-  username: todolist
-  password: 12345
-  pool: 5
-  timeout: 5000
-  host: localhost
-  port: 5432
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_TEST", "todolist_test") %>
+  username: <%= ENV.fetch("DB_USER_TEST", "todolist") %>
+  password: <%= ENV.fetch("DB_PASSWORD_TEST", 12345) %>
+  host: <%= ENV.fetch("DB_HOST_TEST", "localhost") %>
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: todo_production_9zjt 
-  username: todo
-  password: LRg4sJjcKH1E0yz98HORwhQXhDg3vr7U
-  pool: 5
-  timeout: 5000
-  host: dpg-d04glch5pdvs73cbiukg-a
-  port: 5432
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_PROD") %>
+  username: <%= ENV.fetch("DB_USER_PROD") %>
+  password: <%= ENV.fetch("DB_PASSWORD_PROD") %>
+  host: <%= ENV.fetch("DB_HOST_PROD") %>
