@@ -95,12 +95,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: .ruby-version
           bundler-cache: true
-
+      
       - name: Check Ruby version
-        run: ruby -v\
-  
+        run: ruby -v
+      
       - name: Install dependencies
         run: |
           gem install bundler
