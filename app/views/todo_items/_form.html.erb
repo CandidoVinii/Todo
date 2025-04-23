@@ -1,7 +1,7 @@
 <%= form_with(model: [@todo_list, @todo_item], class: "space-y-4") do |form| %>
   <% if @todo_item.errors.any? %>
     <div class="bg-red-100 text-red-700 p-4 rounded"> 
-      <h2><%= pluralize(@todo_item.errors.count, "erro") %> encontrados:</h2>
+      <h2><%= pluralize(@todo_item.errors.count, "erro") %> Found:</h2>
       <ul>
         <% @todo_item.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -11,12 +11,12 @@
   <% end %>
 
   <div>
-    <%= form.label :content, "Tarefa", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.label :content, "Task", class: "block text-sm font-medium text-gray-700" %>
     <%= form.text_field :content, class: "mt-1 block w-full border border-gray-300 rounded p-2" %>
   </div>
 
   <div>
-    <%= form.label :done, "Concluído?" %>
+    <%= form.label :done, "Done?" %>
     <%= form.check_box :done %>
   </div>
 
