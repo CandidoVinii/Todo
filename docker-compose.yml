@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: todolist
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: todo_development
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://todolist:123456@db:5432/todo_development
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+    ports:
+      - "3000:80"
+    command: ./bin/thrust ./bin/rails server
+
+volumes:
+  pgdata:
