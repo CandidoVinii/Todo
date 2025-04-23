@@ -114,6 +114,10 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          DB_NAME_TEST: todolist_development
+          DB_USER_TEST: todolist
+          DB_PASSWORD_TEST: 12345
+          DB_HOST_TEST: localhost
           DATABASE_URL: postgres://todolist:12345@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
         run: ruby bin/rails db:test:prepare test test:system
