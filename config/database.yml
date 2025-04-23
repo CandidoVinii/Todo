@@ -21,7 +21,7 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV["DB_NAME_PROD"] || "fallback_prod_db" %>
-  username: <%= ENV["DB_USERNAME_PROD"] || "fallback_user" %>
-  password: <%= ENV["DB_PASSWORD_PROD"] || "fallback_pass" %>
-  host: <%= ENV["DB_HOST_PROD"] || "localhost" %>
+  database: <%= ENV.fetch("DB_NAME_PROD") %>
+  username: <%= ENV.fetch("DB_USERNAME_PROD") %>
+  password: <%= ENV.fetch("DB_PASSWORD_PROD") %>
+  host:     <%= ENV.fetch("DB_HOST_PROD") %>
