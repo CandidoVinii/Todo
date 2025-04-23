@@ -105,7 +105,7 @@ jobs:
   
       - name: Set up database
         run: |
-          cp config/database.yml config/database.yml
+          cp config/database.yml
           bin/rails db:create
           bin/rails db:schema:load
 
