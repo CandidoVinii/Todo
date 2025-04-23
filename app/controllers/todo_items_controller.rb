@@ -19,7 +19,7 @@ class TodoItemsController < ApplicationController
   def create
     @todo_item = @todo_list.todo_items.build(todo_item_params)
     if @todo_item.save
-      redirect_to todo_list_path(@todo_list), notice: "Tarefa criada com sucesso!"
+      redirect_to todo_list_path(@todo_list), notice: "Task created successfully!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class TodoItemsController < ApplicationController
 
   def update
     if @todo_item.update(todo_item_params)
-      redirect_to todo_list_path(@todo_list), notice: "Tarefa atualizada!"
+      redirect_to todo_list_path(@todo_list), notice: "Updated task!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class TodoItemsController < ApplicationController
   def destroy
     @todo_item = TodoItem.find(params[:id])
     if @todo_item.destroy
-    redirect_to todo_list_path(@todo_list), notice: "Tarefa removida!"
+    redirect_to todo_list_path(@todo_list), notice: "Task deleted!"
     else
       render :edit, status: :unprocessable_entity
     end
