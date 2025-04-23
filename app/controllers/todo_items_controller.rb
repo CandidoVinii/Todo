@@ -37,6 +37,15 @@ class TodoItemsController < ApplicationController
     end
   end
 
+  def done
+    @todo_item = TodoItem.find(params[:id])
+    if @todo_item.update(done: true)
+      redirect_to todo_list_path(@todo_list), notice: "Task is done!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @todo_item = TodoItem.find(params[:id])
     if @todo_item.destroy
