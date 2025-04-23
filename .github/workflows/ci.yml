@@ -23,7 +23,7 @@ jobs:
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+        run: ruby bin/brakeman --no-pager
 
   scan_js:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        run: ruby bin/rubocop -f github
 
   test:
     runs-on: ubuntu-latest
