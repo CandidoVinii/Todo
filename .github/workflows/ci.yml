@@ -119,6 +119,10 @@ jobs:
           DB_PASSWORD_TEST: 12345
           DB_HOST_TEST: localhost
           DATABASE_URL: postgres://todolist:12345@localhost:5432
+          DB_NAME_PROD: prod
+          DB_USER_PROD: prod
+          DB_PASSWORD_PROD: prod
+          DB_HOST_PROD: prod
           # REDIS_URL: redis://localhost:6379/0
         run: ruby bin/rails db:test:prepare test test:system
 
