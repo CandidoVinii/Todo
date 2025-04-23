@@ -23,10 +23,10 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: todolist_development 
-  username: todolist
-  password: 12345
+  database: todo_production_9zjt 
+  username: todo
+  password: LRg4sJjcKH1E0yz98HORwhQXhDg3vr7U
   pool: 5
   timeout: 5000
-  host: localhost
+  host: dpg-d04glch5pdvs73cbiukg-a
   port: 5432
