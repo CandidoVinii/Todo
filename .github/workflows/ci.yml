@@ -107,6 +107,17 @@ jobs:
           bundle install --jobs 4 --retry 3
   
       - name: Set up database
+        env:
+          RAILS_ENV: test
+          DB_NAME_TEST: todolist_development
+          DB_USER_TEST: todolist
+          DB_PASSWORD_TEST: 12345
+          DB_HOST_TEST: localhost
+          DATABASE_URL: postgres://todolist:12345@localhost:5432
+          DB_NAME_PROD: prod
+          DB_USER_PROD: prod
+          DB_PASSWORD_PROD: prod
+          DB_HOST_PROD: prod
         run: |
           ruby bin/rails db:create RAILS_ENV=test
           ruby bin/rails db:schema:load RAILS_ENV=test
