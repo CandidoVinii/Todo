@@ -69,8 +69,8 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: todolist
+          POSTGRES_PASSWORD: 12345
           POSTGRES_DB: todolist_development
         ports:
           - 5432:5432
