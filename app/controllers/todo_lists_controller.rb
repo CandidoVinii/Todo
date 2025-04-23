@@ -19,7 +19,7 @@ class TodoListsController < ApplicationController
   def create
     @todo_list = TodoList.new(todo_list_params)
     if @todo_list.save
-      redirect_to @todo_list, notice: "Lista criada com sucesso"
+      redirect_to @todo_list, notice: "List created successfully"
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class TodoListsController < ApplicationController
   def update
     @todo_list = TodoList.find(params[:id])
     if @todo_list.update(todo_list_params)
-      redirect_to @todo_list, notice: "Lista atualizada com sucesso"
+      redirect_to @todo_list, notice: "List updated successfully"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class TodoListsController < ApplicationController
   def destroy
     @todo_list = TodoList.find(params[:id])
     if @todo_list.destroy
-    redirect_to todo_lists_path, notice: "Lista removida com sucesso"
+    redirect_to todo_lists_path, notice: "List deleted successfully"
     else
       render :edit, status: :unprocessable_entity
     end

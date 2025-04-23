@@ -24,4 +24,4 @@ production:
   database: <%= ENV.fetch("DB_NAME_PROD") %>
   username: <%= ENV.fetch("DB_USER_PROD") %>
   password: <%= ENV.fetch("DB_PASSWORD_PROD") %>
-  host: <%= ENV.fetch("DB_HOST_PROD") %>
+  host:     <%= ENV.fetch("DB_HOST_PROD") %>
