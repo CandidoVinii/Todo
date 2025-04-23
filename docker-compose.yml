@@ -17,8 +17,11 @@ services:
     depends_on:
       - db
     environment:
-      RAILS_ENV: development
-      DATABASE_URL: postgresql://todo:LRg4sJjcKH1E0yz98HORwhQXhDg3vr7U@dpg-d04glch5pdvs73cbiukg-a.oregon-postgres.render.com/todo_production_9zjt
+      RAILS_ENV: ${RAILS_ENV}
+      DB_NAME_DEV: ${DB_NAME_DEV}
+      DB_USER_DEV: ${DB_USER_DEV}
+      DB_PASSWORD_DEV: ${DB_PASSWORD_DEV}
+      DB_HOST_DEV: ${DB_HOST_DEV}
       RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
     ports:
       - "3000:80"
