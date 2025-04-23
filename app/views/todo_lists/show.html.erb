@@ -8,7 +8,7 @@
       <div class="space-x-2">
         <%= link_to "Edit", edit_todo_list_todo_item_path(@todo_list, todo_item), class: "text-yellow-600 hover:underline" %>
         <% if !todo_item.done %>
-          <%= button_to "Done", todo_list_todo_item_path(@todo_list, todo_item), method: :patch, params: { todo_item: { done: true } }, data: { confirm: "Done this task?" }, class: "text-blue-600 hover:underline" %>
+          <%= button_to "Done", done_todo_list_todo_item_path(@todo_list, todo_item), method: :patch, data: { confirm: "Done this task?" }, class: "text-blue-600 hover:underline" %>
         <% end %>        
         <%= button_to "Delete", todo_list_todo_item_path(@todo_list, todo_item), method: :delete, data: { confirm: "Delete this task?" }, class: "text-red-600 hover:underline" %>
       </div>
@@ -21,5 +21,5 @@
 </div>
 
 <div clasmt-4">
-  <%= link_to "Go back To-Do list", todo_lists_path, class: "text-blue-600 hover:underline" %>
+  <%= link_to "Go back To-Do list", todo_lists_path, class: "text-blue-600 hover:underline block mt-4" %>
 </div>
