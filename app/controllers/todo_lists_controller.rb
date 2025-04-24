@@ -47,14 +47,22 @@ class TodoListsController < ApplicationController
 
   def edit
     @todo_list = TodoList.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @todo_list }
+    end
   end
 
   def update
     @todo_list = TodoList.find(params[:id])
-    if @todo_list.update(todo_list_params)
-      redirect_to @todo_list, notice: "List updated successfully"
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @todo_list.update(todo_list_params)
+        format.html { redirect_to @todo_list, notice: "List updated successfully" }
+        format.json { render json: @todo_list }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @todo_list.errors, status: :unprocessable_entity }
+      end
     end
   end
 
