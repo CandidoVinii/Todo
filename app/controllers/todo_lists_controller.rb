@@ -57,7 +57,7 @@ class TodoListsController < ApplicationController
     @todo_list = TodoList.find(params[:id])
     respond_to do |format|
       if @todo_list.update(todo_list_params)
-        format.html { redirect_to @todo_list, notice: "List updated successfully" }
+        format.html { redirect_to todo_lists_path, notice: "List updated successfully" }
         format.json { render json: @todo_list }
       else
         format.html { render :edit, status: :unprocessable_entity }
