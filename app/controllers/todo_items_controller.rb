@@ -93,6 +93,7 @@ class TodoItemsController < ApplicationController
 
   def set_todo
     @todo_item = @todo_list.todo_items.find(params[:id])
+    render_not_found unless @todo_item
   end
 
   def todo_item_params
