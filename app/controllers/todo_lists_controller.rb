@@ -68,12 +68,18 @@ class TodoListsController < ApplicationController
 
   def destroy
     @todo_list = TodoList.find(params[:id])
-    if @todo_list.destroy
-    redirect_to todo_lists_path, notice: "List deleted successfully"
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @todo_list.destroy
+        format.html { redirect_to todo_lists_path, notice: "List deleted successfully" }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { error: "Failed to delete todo list" }, status: :unprocessable_entity }
+      end
     end
   end
+
+  private
 
   def todo_list_params
     params.require(:todo_list).permit(:title)
