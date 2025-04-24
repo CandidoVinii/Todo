@@ -26,6 +26,10 @@ class TodoListsController < ApplicationController
 
   def new
     @todo_list = TodoList.new
+    respond_to do |format|
+      format.html
+      format.json { render json: @todo_list }
+    end
   end
 
   def create
