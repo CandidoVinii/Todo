@@ -61,19 +61,27 @@ class TodoItemsController < ApplicationController
 
   def done
     @todo_item = TodoItem.find(params[:id])
-    if @todo_item.update(done: true)
-      redirect_to todo_list_path(@todo_list), notice: "Task is done!"
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @todo_item.update(done: true)
+        format.html { redirect_to todo_list_path(@todo_list), notice: "Task marked as done!" }
+        format.json { render json: @todo_item, status: :ok }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { error: "Failed to mark task as done" }, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @todo_item = TodoItem.find(params[:id])
-    if @todo_item.destroy
-    redirect_to todo_list_path(@todo_list), notice: "Task deleted!"
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @todo_item.destroy
+        format.html { redirect_to todo_list_path(@todo_list), notice: "Task deleted successfully!" }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: { error: "Failed to delete task" }, status: :unprocessable_entity }
+      end
     end
   end
 
