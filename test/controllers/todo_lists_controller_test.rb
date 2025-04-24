@@ -34,7 +34,7 @@ class TodoListsControllerTest < ActionDispatch::IntegrationTest
 
   test "deve atualizar uma lista" do
     patch todo_list_url(@todo_list), params: { todo_list: { title: "Atualizado" } }
-    assert_redirected_to todo_list_path(@todo_list)
+    assert_redirected_to todo_lists_path()
     @todo_list.reload
     assert_equal "Atualizado", @todo_list.title
   end
