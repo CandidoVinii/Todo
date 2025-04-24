@@ -12,7 +12,16 @@ class TodoListsController < ApplicationController
   end
 
   def show
-    @todo_list = TodoList.find(params[:id])
+    @todo_list = TodoList.find_by(id: params[:id])
+    respond_to do |format|
+      if @todo_list
+        format.html
+        format.json { render json: @todo_list }
+      else
+        format.html { render file: "#{Rails.root}/public/404.html", status: :not_found }
+        format.json { render json: { error: "Todo list not found" }, status: :not_found }
+      end
+    end
   end
 
   def new
