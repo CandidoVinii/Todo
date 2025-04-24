@@ -21,14 +21,22 @@ class TodoItemsController < ApplicationController
 
   def new
     @todo_item = @todo_list.todo_items.build
+    respond_to do |format|
+      format.html
+      format.json { render json: @todo_item }
+    end
   end
 
   def create
     @todo_item = @todo_list.todo_items.build(todo_item_params)
-    if @todo_item.save
-      redirect_to todo_list_path(@todo_list), notice: "Task created successfully!"
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @todo_item.save
+        format.html { redirect_to todo_list_path(@todo_list), notice: "Task created successfully!" }
+        format.json { render json: @todo_item, status: :created }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @todo_item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
