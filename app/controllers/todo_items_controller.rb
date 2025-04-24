@@ -8,8 +8,15 @@ class TodoItemsController < ApplicationController
   end
 
   def show
-    @todo_item = @todo_list.todo_items.find_by(id: params[:id])
-    render_not_found unless @todo_item
+    respond_to do |format|
+      if @todo_item
+        format.html { render :show }
+        format.json { render json: @todo_item }
+      else
+        format.html { render_not_found }
+        format.json { render json: { error: "Item not found" }, status: :not_found }
+      end
+    end
   end
 
   def new
