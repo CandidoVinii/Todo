@@ -1,10 +1,13 @@
 class TodoListsController < ApplicationController
   def index
     @todo_lists = TodoList.all
-    if @todo_lists.empty?
-      flash[:notice] = "No todo lists found."
-    else
-      @todo_lists
+    respond_to do |format|
+      format.html do
+        if @todo_lists.empty?
+          flash[:notice] = "No todo lists found. Create a new list!!"
+        end
+      end
+      format.json { render json: @todo_lists }
     end
   end
 
